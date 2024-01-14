@@ -1,16 +1,18 @@
 
 import './App.css'
-import React from 'react';
+import Navbar from './component/Navbar/Navbar'
 
 function App() {
-  
+ 
 
   return (
-    
+    <>
       
-          <div>TheComfortableCruise</div>
-       
-    
+        
+        <Navbar/>
+        
+      
+    </>
   )
 }
 
