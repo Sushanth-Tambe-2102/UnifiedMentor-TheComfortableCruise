@@ -11,7 +11,7 @@ const NavBox = styled(Box)({
     color: 'white',
     display:'flex',
     flexDirection: 'row',
-    height: '90px',
+    height: '60px',
     paddingTop:'15px',    
     justifyContent: 'center',
     position:'absolute',
@@ -25,7 +25,7 @@ const Logo  =styled(Box)({
 
   })
 const NavHeader=styled(Typography)( {    
-    fontSize: '50px',
+    fontSize: '40px',
     fontFamily:'Apple Color Emoji', 
     position:'absolute',
     display: 'flex',
@@ -56,7 +56,7 @@ const Waves=styled(Box)({
     
     backgroundColor: "white",
     borderRadius: "10px",
-    margin: "15px 0px 10px 50px",    
+    margin: "5px 0px 5px 50px",    
     width: "160px",
     display: "flex",
     justifyContent: "start",
@@ -94,7 +94,7 @@ const Waves=styled(Box)({
         
       <NavBox>
         <Logo>
-            <img src={shipLogo} height="70px" width="180px" />
+            <img src={shipLogo} height="50px" width="150px" />
         </Logo>
         <NavHeader>
             
