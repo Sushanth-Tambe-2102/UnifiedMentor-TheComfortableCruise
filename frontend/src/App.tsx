@@ -1,9 +1,11 @@
 
+import Login from './Pages/Login'
 import './App.css'
 import Home from './Pages/Home'
 import Register from './Pages/Register'
-import Navbar from './component/Navbar/Navbar'
+
 import {Routes,Route} from 'react-router-dom'
+import UserCart from './Pages/UserCart'
 
 function App() {
  
@@ -11,15 +13,20 @@ function App() {
   return (
     <>
       
+      <Routes>
         
-        <Navbar/>
         
-        <Routes>
+        
           <Route path="/" element={<Home/>}/>
+          
           <Route path="/register" element={<Register/>}/>
-
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/user" element={<UserCart/>}/>
+          
+          
         </Routes>
-      
+        
+        
     </>
   )
 }

@@ -2,7 +2,7 @@
 import { Box } from '@mui/material';
 
 import styled from '@emotion/styled';
-import { css, keyframes } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 import Catering from '/Services/Catering.jpg';
 import Stationary from '/Services/Stationary.jpg'
 import Theater from '/Services/Theater.jpg';
