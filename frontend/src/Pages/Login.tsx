@@ -1,16 +1,15 @@
-import { Box, styled, } from "@mui/system";
+import { Box, styled } from "@mui/system";
 import Register1 from "/register/register1.jpg";
-import { Alert, Typography } from "@mui/material";
+import { Alert,IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TextField from '@mui/material/TextField';
-import {IconButton,Button} from '@mui/material';
+import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
 import { useFirebase   } from "../context/Firebase";
 
 import CloseIcon from '@mui/icons-material/Close';
-
 
 const Paper = styled(Box)({
   width:'100%',
@@ -32,7 +31,7 @@ const MainBox =styled(Box)({
 
   alignItems: 'center', 
   flexDirection:'row',
-  boxShadow:' 100px 20px 30px rgba(0, 0, 0, 0.2)'
+  boxShadow:' 100px 20px 30px rgba(0, 0, 0, 0.1)'
   
 })
 
@@ -71,7 +70,7 @@ const InfoDetails = styled(Typography)({
   fontSize:'18px',
   padding:'20px 20px 0 30px'
 })
-const RegisterBox = styled(Box)({
+const LoginBox = styled(Box)({
   padding:'100px 0 0 40px',
   width:'55%',
   display: 'flex',
@@ -90,22 +89,21 @@ const Ta1 =styled(Tab)({
     fontFamily: 'helvetica',
     color:'#1976d2',
     fontSize: '23px',
-    borderBottom:'3px solid #1976d2'
+    
 })
 const Ta2 =styled(Tab)({
   width: '100%',
   height:'70px',
   fontFamily: 'helvetica',
-
   
   fontSize: '23px'
 })
 
-const RegisterForm =styled(Box)({
+const LoginForm =styled(Box)({
   display:'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  gap:'50px',
+  gap:'70px',
   flexDirection: 'column' ,
   height: '80%',
   fontSize:'20px' 
@@ -121,7 +119,8 @@ const FormButton =styled(Button)({
   color: '#1976d2',
   height:'50px',
   fontSize: '15px',
-  marginTop:'80px'
+  marginTop: '120px',
+  marginBottom: '0px',
 })
 const AlertBox =styled(Alert)({
   margin:'0px',
@@ -129,51 +128,36 @@ const AlertBox =styled(Alert)({
   fontSize: '16px',
   height: '40px',
   position: 'absolute',
-  bottom: '165px',
+  bottom: '225px',
   padding:'0px',
   display:'flex',
   alignContent:'center',
   justifyContent: 'center',
 
 })
+
 const Register = () => {
 
   const [email,setemail ] =useState('')
-  const [name,setname ] =useState('')
+ 
   const [Password ,setPassword ] =useState('')
-  const [cruiseCode ,setcruiseCode] =useState('')
   const [Alerterror ,setAlerterror ] =useState('')
-  
-  const [value, setValue] = useState("one");
+  const [value, setValue] = useState("two");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
   const Firebase =useFirebase()
   
   const navigate = useNavigate();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  
 
   const handleSubmit=async (e:any)=>{
       e.preventDefault();
-      console.log("signup user ...")
-      const isValidEmail = emailRegex.test(email);
-      if(isValidEmail==false){
-        setAlerterror("Invalid email")
-        
-      }else{
-      if(cruiseCode=="1234"||cruiseCode=="4321"||cruiseCode=="2468"||cruiseCode=="1357"){
-        const error  = await Firebase.signupUserwithEmailandPassword(email,Password,name,cruiseCode)
-        setAlerterror(error)
-
-      }
-      else{
-        setAlerterror("Invalid Cruise Code")
-      }}
-      
-     console.log("auth")
-      
-      
-
+      console.log("signin user ...")
+      const error = await Firebase.loginUserwithEmailandPassword(email,Password)
+  
+      setAlerterror(error)
   }
   const Quit =styled(IconButton)({
     position: "absolute",
@@ -181,23 +165,21 @@ const Register = () => {
     right:'90px',
     fontSize:'24px'
   })
-
-  
   
   return (
     <>
+    
       <Paper>
         <MainBox>
-          <Quit onClick={()=>navigate('/')}><CloseIcon/></Quit>
-          
-          <ImageBox>
+        <Quit onClick={()=>navigate('/')}><CloseIcon/></Quit>
+          <ImageBox>            
             <Info>
             <Infoheader> Welcome Voyagers,</Infoheader>
             <InfoDetails> This is platfom  immerses you in the ease of ordering catering and stationery, or elevate your experience by reserving tickets for Resort-Movies, pampering at the Beauty Salon, working out at the Fitness Center, and organizing memorable events at the Party Hall. Your adventure begins here, where every click unveils a new possibility for a delightful voyage.</InfoDetails>
             </Info>
             
           </ImageBox>
-          <RegisterBox>
+          <LoginBox>
           <Tabss
             value={value}
             onChange={handleChange}
@@ -209,15 +191,8 @@ const Register = () => {
             <Ta1 value={"one"} label="Register"onClick={()=>(navigate("/register"))} />
             <Ta2 value={"two"} label="Login" onClick={()=>(navigate("/login"))} />
       </Tabss>
-       <RegisterForm>
-       <TextFields
-          required
-          id="standard-required"
-          label="Voyagers Name"
-          variant="standard"
-          value={name}
-          onChange={(e)=>setname(e.target.value)}
-        />
+       <LoginForm>
+       
       <TextFields
           required
           id="standard-required"
@@ -234,21 +209,15 @@ const Register = () => {
           value={Password}
           onChange={(e)=>setPassword(e.target.value)}
         />
-        <TextFields
-          required
-          id="standard-required"
-          label="Cruise Code "
-          variant="standard"
-          value={cruiseCode}
-          onChange={(e)=>setcruiseCode(e.target.value)}
-        />
-        { Alerterror==""?<></>:<AlertBox severity="error">{Alerterror}</AlertBox>
+      
+      { Alerterror==""?<></>:<AlertBox severity="error">{Alerterror}</AlertBox>
         }
-        <FormButton onClick={handleSubmit}>Register</FormButton>
-        </RegisterForm>
+        <FormButton onClick={handleSubmit}>Login</FormButton>
+        
+        </LoginForm>
          
       
-                </RegisterBox>
+                </LoginBox>
         </MainBox>
 
         

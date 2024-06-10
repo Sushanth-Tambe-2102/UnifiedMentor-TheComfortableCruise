@@ -2,6 +2,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Paper, Box,Button, IconButton,Typography } from '@mui/material'
 import { styled, typography } from "@mui/system";
 import  { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 interface ImageInfo {
   name: string,
@@ -73,7 +74,12 @@ const RegisterButton =styled(IconButton)({
     color:'white',
 
   },
+  
 })
+const navigate= useNavigate()
+const handleRegister =()=>{
+  navigate('/register')
+}
 
   
   return (
@@ -96,7 +102,7 @@ const RegisterButton =styled(IconButton)({
          
           <RegisterBox >
             
-          <RegisterButton>Register</RegisterButton>
+          <RegisterButton onClick={handleRegister}>Register</RegisterButton>
           
           </RegisterBox>
         </ImageBox>

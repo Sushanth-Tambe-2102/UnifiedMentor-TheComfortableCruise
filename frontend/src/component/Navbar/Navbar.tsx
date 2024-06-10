@@ -2,6 +2,7 @@ import shipLogo from '/logoFinal.png'
 import styled from '@emotion/styled'
 import { Box, Typography,IconButton } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     
@@ -87,6 +88,10 @@ const Waves=styled(Box)({
 
     zIndex:2
   })
+  const navigate = useNavigate()
+  const handleLogin = ()=>{
+      navigate("./login")
+  }
   
   
   return (
@@ -101,31 +106,12 @@ const Waves=styled(Box)({
           The Comfortable Cruise
           </NavHeader>
           <LoginBox>
-        <LoginButton>Login
+        <LoginButton onClick={handleLogin}>Login
           <Loginicon/>
         </LoginButton>
         
         </LoginBox>
-        <Waves>
-        {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 250 30"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
-              
-              <path id="gentle-wave" d="M-60 48c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            </defs>
-            <g className="parallax">
-              <use xlinkHref="#gentle-wave" x="28" y="0" fill="rgba(255,255,255,0.7)" />
-              <use xlinkHref="#gentle-wave" x="28" y="3" fill="rgba(255,255,255,0.5)" />
-              <use xlinkHref="#gentle-wave" x="28" y="5" fill="rgba(255,255,255,0.3)" />
-              <use xlinkHref="#gentle-wave" x="28" y="7" fill="#fff" />
-            </g>
-          </svg> */}
-        </Waves>
+       
 
       </NavBox>
       

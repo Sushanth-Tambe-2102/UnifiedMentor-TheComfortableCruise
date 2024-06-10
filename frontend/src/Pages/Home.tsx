@@ -1,9 +1,10 @@
-import { Box, getContrastRatio, styled } from "@mui/system"
+import { Box, styled } from "@mui/system"
 import ImageCarousel from "../component/ImageCarousel/ImageCarousel"
 import Carousel from 'react-material-ui-carousel'
 import Waves from "../component/Decorations/Waves";
 import Serviceheader from "../component/Decorations/Serviceheader";
 import Droplet from "../component/Services/Droplet";
+import Navbar from "../component/Navbar/Navbar";
 
 
 const items  = [
@@ -54,6 +55,8 @@ const CarouselItem=styled(Carousel)({
 const Home = () => {
   return (
     <>
+          
+    <Navbar/>
     <HomeBox>
     <CarouselBox>
         <CarouselItem
@@ -68,7 +71,7 @@ const Home = () => {
         
         >        
         {   
-        items.map((item,i)=>(
+        items.map((item)=>(
             <ImageCarousel name={item.name} description={item.description} image={item.image}/>
         ))
             
